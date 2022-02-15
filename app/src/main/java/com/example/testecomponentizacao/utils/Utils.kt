@@ -3,6 +3,10 @@ package com.example.testecomponentizacao.utils
 import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.testecomponentizacao.R
 
 fun hideKeyboard(activity: Activity){
     val inputMethodManager =
@@ -13,4 +17,11 @@ fun hideKeyboard(activity: Activity){
             currentFocusView?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
         )
     }
+}
+
+fun loadImage(image: ImageView){
+    Glide.with(image)
+        .load(R.drawable.headset_mini)
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .into(image)
 }

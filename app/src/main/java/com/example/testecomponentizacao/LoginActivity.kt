@@ -18,16 +18,17 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         binding.activityLoginButtonLogin.setOnClickListener {
-            val intent = Intent(this, ListActivity::class.java)
+            val intent = Intent(this, HomeLoggedActivity::class.java)
             startActivity(intent)
         }
+        supportActionBar?.hide()
+
         hideStatusBar()
         hideKeyboard(this)
         setContentView(view)
     }
 
     private fun hideStatusBar(){
-        @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         }else{

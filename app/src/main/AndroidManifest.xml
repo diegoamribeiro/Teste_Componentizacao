@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TesteComponentizacao">
         <activity
-            android:name=".ListActivity"
+            android:name=".HomeLoggedActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

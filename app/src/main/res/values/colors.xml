@@ -20,5 +20,7 @@
     <color name="login_tip_message">#70EFDE</color>
     <color name="login_label">#0ACF83</color>
     <color name="light_grey">#DADADA</color>
-    <color name="login_bg_edit_text">#00DADADA</color>
+    <color name="bg_top_headset">#7D22FF</color>
+    <color name="bg_center_headset">#441783</color>
+
 </resources>

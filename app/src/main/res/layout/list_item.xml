@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:toos="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/dark_300">
+    android:background="@color/dark_300"
+    android:layout_marginBottom="0.5dp"
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/fragment_list_card"
@@ -47,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_card"
         app:layout_constraintStart_toStartOf="@+id/fragment_list_txt_title"
         app:layout_constraintTop_toBottomOf="@+id/fragment_list_txt_title"
-        toos:src="@drawable/ic_star" />
+        android:src="@drawable/ic_star" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_list_txt_rating"
@@ -93,16 +95,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
+        android:text="@string/real_currency"
         android:fontFamily="@font/dm_sans_bold"
         android:textColor="@color/primary_300"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_card"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_list_txt_currency"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_list_txt_price"
         app:layout_constraintTop_toTopOf="@+id/fragment_list_card"
-        toos:text="@string/real_currency" />
+         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_list_txt_currency"
+        android:id="@+id/fragment_list_txt_price"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"

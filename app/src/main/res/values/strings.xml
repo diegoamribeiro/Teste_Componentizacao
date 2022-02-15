@@ -11,4 +11,8 @@
     <string name="real_currency">R$</string>
     <string name="currency">20,50</string>
     <string name="label_reviews">Reviews</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="question">\?</string>
 </resources>

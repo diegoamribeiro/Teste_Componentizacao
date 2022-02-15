@@ -78,7 +78,7 @@
                 android:id="@+id/activity_login_til_username"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="299dp"
+                android:layout_marginTop="@dimen/margin_between_sub_username"
                 android:textColorHint="@color/white_translucent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:theme="@style/MyCustomEditTextStyle"

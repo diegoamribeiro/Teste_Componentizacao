@@ -1,10 +1,14 @@
 package com.example.testecomponentizacao.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Product(
-    val id: Int?,
+    val id: Int? = null,
     val title: String,
     val price: String,
-    val rating: Int,
+    val rating: Double,
     val reviews: Double,
-    val imageUrl: String
-)
+    val imageUrl: Int
+) : Parcelable

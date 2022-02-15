@@ -1,25 +1,48 @@
 package com.example.testecomponentizacao.view.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testecomponentizacao.ListFragmentDirections
 import com.example.testecomponentizacao.databinding.ListItemBinding
 import com.example.testecomponentizacao.domain.Product
+import com.example.testecomponentizacao.utils.DiffUtilGeneric
+import com.example.testecomponentizacao.utils.loadImage
 
-class ProductListAdapter: RecyclerView.Adapter<ProductListViewHolder>(){
+class ProductListAdapter : RecyclerView.Adapter<ProductListViewHolder>() {
 
     private var productList = emptyList<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductListViewHolder {
-        TODO("Not yet implemented")
+        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ProductListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProductListViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding.apply {
+            fragmentListTxtTitle.text = productList[position].title
+            fragmentListTxtPrice.text = productList[position].price
+            fragmentListTxtRating.text = productList[position].rating.toString()
+            fragmentListTxtReviews.text = productList[position].reviews.toString()
+            loadImage(fragmentListImgHeadsetMini)
+
+            holder.itemView.setOnClickListener {
+                val action = ListFragmentDirections.actionListFragmentToDetailsFragment(productList[position])
+                holder.itemView.findNavController().navigate(action)
+            }
+        }
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+    override fun getItemCount() = productList.size
+
+    fun setData(list: List<Product>) {
+        val productDiffUtil = DiffUtilGeneric(productList, list)
+        val productResult = DiffUtil.calculateDiff(productDiffUtil)
+        this.productList = list
+        productResult.dispatchUpdatesTo(this)
     }
 }
 
-class ProductListViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root)
+class ProductListViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)

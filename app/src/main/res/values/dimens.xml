@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_between_sub_username">260dp</dimen>
+    <dimen name="margin_between_sub_username">400dp</dimen>
+    <dimen name="guide_begin_top">321dp</dimen>
+    <dimen name="headset_width">300dp</dimen>
+    <dimen name="headset_height">250dp</dimen>
 </resources>

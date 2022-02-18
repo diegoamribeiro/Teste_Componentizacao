@@ -8,7 +8,7 @@
     android:background="@color/black">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/fragment_list_appbar"
+        android:id="@+id/fragment_details_appbar"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         app:elevation="0dp"
@@ -23,23 +23,24 @@
             tools:context=".view.fragments.ListFragment">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/fragment_list_img_headset"
+                android:id="@+id/fragment_details_img_headset"
                 android:layout_width="@dimen/headset_width"
                 android:layout_height="@dimen/headset_height"
-                android:src="@drawable/headset"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_list_img_shadow"
+                tools:src="@drawable/headset"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_details_img_shadow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/fragment_list_img_shadow"
+                android:id="@+id/fragment_details_img_shadow"
                 android:layout_width="@dimen/headset_width"
                 android:layout_height="wrap_content"
                 android:src="@drawable/shadow_headset"
-                app:layout_constraintEnd_toEndOf="@+id/fragment_list_img_headset"
-                app:layout_constraintStart_toStartOf="@+id/fragment_list_img_headset"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_list_img_headset" />
+                app:layout_constraintEnd_toEndOf="@+id/fragment_details_img_headset"
+                app:layout_constraintStart_toStartOf="@+id/fragment_details_img_headset"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_details_img_headset" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -58,10 +59,10 @@
         android:layout_marginTop="-45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_list_appbar" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_appbar" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/fragment_details_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="25dp"
@@ -103,7 +104,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/connection"
         app:layout_constraintEnd_toStartOf="@+id/fragment_details_guideline_center"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_view" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_details_txt_label_compatibility"
@@ -156,16 +157,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="@string/capture"
         app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_view" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_details_txt_compatibility"
         style="@style/MyCustomTextViewDetailsRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/capture"
         app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
         app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_connection" />
 
@@ -174,7 +173,6 @@
         style="@style/MyCustomTextViewDetailsRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/capture"
         app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
         app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_compatibility" />
 
@@ -183,7 +181,6 @@
         style="@style/MyCustomTextViewDetailsRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/capture"
         app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
         app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_power" />
 
@@ -192,7 +189,6 @@
         style="@style/MyCustomTextViewDetailsRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/capture"
         app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
         app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_autonomy" />
 
@@ -201,7 +197,6 @@
         style="@style/MyCustomTextViewDetailsRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/capture"
         app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
         app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_height" />
 </androidx.constraintlayout.widget.ConstraintLayout>

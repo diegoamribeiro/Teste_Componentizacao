@@ -2,60 +2,75 @@ package com.example.testecomponentizacao.view.fragments
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testecomponentizacao.R
+import com.example.testecomponentizacao.data.remote.NetworkResponse
 import com.example.testecomponentizacao.databinding.FragmentListBinding
 import com.example.testecomponentizacao.model.Product
 import com.example.testecomponentizacao.view.adapter.ProductListAdapter
+import com.example.testecomponentizacao.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    private val listAdapter: ProductListAdapter by lazy { ProductListAdapter() }
     private lateinit var binding: FragmentListBinding
+    private lateinit var viewModel: ListViewModel
     private lateinit var recyclerView: RecyclerView
+    private val listAdapter: ProductListAdapter by lazy { ProductListAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
+        viewModel = ViewModelProvider(requireActivity())[ListViewModel::class.java]
         binding = FragmentListBinding.inflate(layoutInflater, container, false)
         val view = binding.root
+
+        loadRecyclerView()
+        requestApiData()
+        customActionBar()
+        setHasOptionsMenu(true)
+
+        return view
+    }
+
+    private fun loadRecyclerView(){
         recyclerView = binding.fragmentListRecyclerview
         recyclerView.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-        listAdapter.setData(loadElements())
-        customActionBar()
-        setHasOptionsMenu(true)
-//        val mGson = Gson().toJson(loadElements())
-//        Log.d("result", mGson)
-        return view
     }
 
-    private fun loadElements(): List<Product> {
-        return listOf(
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria"),
-            Product("Headset Bluetooth", "20,50", 4.6, 86, "https://imgur.com/5bfqR18", "16 horas", "Semi aviva", "Bluetooth 4.1", "Bluetooth", "18,4", "Bateria")
-        )
+    private fun requestApiData() {
+        viewModel.getAllProduct()
+        viewModel.productResponse.observe(viewLifecycleOwner, { response ->
+            Log.d("***ListFragment", response.data.toString())
+            when(response){
+                is NetworkResponse.Success -> {
+                    response.data?.let {
+                        listAdapter.setData(it)
+                    }
+                }
+                is NetworkResponse.Error -> {
+                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResponse.Loading -> {
+                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun customActionBar(){

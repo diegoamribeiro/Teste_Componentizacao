@@ -33,25 +33,25 @@
                     android:layout_height="match_parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/fragment_list_img_headset"
+                        android:id="@+id/fragment_details_img_headset"
                         android:layout_width="@dimen/headset_width"
                         android:layout_height="@dimen/headset_height"
                         android:adjustViewBounds="true"
                         android:src="@drawable/headset"
-                        app:layout_constraintBottom_toTopOf="@+id/fragment_list_img_shadow"
+                        app:layout_constraintBottom_toTopOf="@+id/fragment_details_img_shadow"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/fragment_list_img_shadow"
+                        android:id="@+id/fragment_details_img_shadow"
                         android:layout_width="@dimen/headset_width"
                         android:layout_height="wrap_content"
                         android:src="@drawable/shadow_headset"
-                        app:layout_constraintEnd_toEndOf="@+id/fragment_list_img_headset"
-                        app:layout_constraintStart_toStartOf="@+id/fragment_list_img_headset"
-                        app:layout_constraintTop_toBottomOf="@id/fragment_list_img_headset"
-                        app:layout_constraintBottom_toBottomOf="@id/fragment_list_img_headset"
+                        app:layout_constraintEnd_toEndOf="@+id/fragment_details_img_headset"
+                        app:layout_constraintStart_toStartOf="@+id/fragment_details_img_headset"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_details_img_headset"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_details_img_headset"
                         tools:layout_editor_absoluteY="200dp" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -67,7 +67,7 @@
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/fragment_list_img_shadow" />
+                        app:layout_constraintTop_toBottomOf="@+id/fragment_details_img_shadow" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/fragment_list_question_button"

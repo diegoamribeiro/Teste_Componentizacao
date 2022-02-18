@@ -85,10 +85,11 @@
         android:fontFamily="@font/dm_sans_regular"
         android:textColor="@color/white"
         android:textSize="@dimen/text_list_info"
+        android:text="@string/label_reviews"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_img_star"
         app:layout_constraintStart_toEndOf="@+id/fragment_list_txt_reviews"
         app:layout_constraintTop_toTopOf="@+id/fragment_list_img_star"
-        toos:text="@string/label_reviews" />
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_list_txt_label_currency"

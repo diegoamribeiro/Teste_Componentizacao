@@ -134,7 +134,6 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textAllCaps="false"
-                android:focusableInTouchMode="true"
                 app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/activity_login_til_password" />

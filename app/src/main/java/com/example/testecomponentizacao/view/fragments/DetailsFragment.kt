@@ -56,5 +56,4 @@ class DetailsFragment : Fragment() {
         )
         actionBar?.setHomeAsUpIndicator(R.drawable.ic_left)
     }
-
 }

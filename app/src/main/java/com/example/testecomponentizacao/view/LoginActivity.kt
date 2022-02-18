@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.testecomponentizacao.databinding.ActivityLoginBinding
@@ -19,14 +20,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
+        supportActionBar?.hide()
+        hideStatusBar()
+        hideKeyboard(this)
+
         binding.activityLoginButtonLogin.setOnClickListener {
             val intent = Intent(this, HomeLoggedActivity::class.java)
             startActivity(intent)
         }
-        supportActionBar?.hide()
-
-        hideStatusBar()
-        hideKeyboard(this)
         setContentView(view)
     }
 

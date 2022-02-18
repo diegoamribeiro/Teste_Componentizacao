@@ -1,6 +1,5 @@
 package com.example.testecomponentizacao.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,11 +27,7 @@ class ListViewModel @Inject constructor(
         productResponse.postValue(NetworkResponse.Loading())
         val response = repository.remote.geAllProducts()
         productResponse.postValue(handleSafeProducts(response))
-        Log.d("***ViewModel", response.toString())
-//        val productEntity = response.body()
-//        NetworkResponse.Success(productEntity)
     }
-
 
     private fun handleSafeProducts(response: Response<List<Product>>): NetworkResponse<List<Product>>{
         productResponse.postValue(NetworkResponse.Loading())

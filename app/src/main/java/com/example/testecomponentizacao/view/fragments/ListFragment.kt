@@ -55,9 +55,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun requestApiData() {
         viewModel.getAllProduct()
-        viewModel.productResponse.observe(viewLifecycleOwner, { response ->
+        viewModel.productResponse.observe(viewLifecycleOwner) { response ->
             Log.d("***ListFragment", response.data.toString())
-            when(response){
+            when (response) {
                 is NetworkResponse.Success -> {
                     response.data?.let {
                         listAdapter.setData(it)
@@ -70,7 +70,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                     Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
     }
 
     private fun customActionBar(){

@@ -19,9 +19,9 @@ fun hideKeyboard(activity: Activity){
     }
 }
 
-fun loadImage(image: ImageView){
-    Glide.with(image)
-        .load(R.drawable.headset_mini)
+fun ImageView.loadImage(imageUrl: String){
+    Glide.with(this)
+        .load(imageUrl)
         .transition(DrawableTransitionOptions.withCrossFade())
-        .into(image)
+        .into(this)
 }

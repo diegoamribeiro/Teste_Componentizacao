@@ -4,7 +4,20 @@
         <item name="colorPrimary">@color/primary_200</item>
         <item name="colorOnSurface">@color/light_grey</item>
     </style>
-<!--    <style name="MyCustomEditTextStyle" parent="Widget.Design.TextInputLayout">-->
-<!--        <item name="colorPrimary">@color/primary_200</item>-->
-<!--    </style>-->
+
+    <style name="MyCustomTextViewDetailsLeft" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/dm_sans_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginEnd">18dp</item>
+    </style>
+
+    <style name="MyCustomTextViewDetailsRight" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/dm_sans_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginStart">18dp</item>
+    </style>
 </resources>

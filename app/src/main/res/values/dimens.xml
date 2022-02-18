@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_between_sub_username">400dp</dimen>
-    <dimen name="guide_begin_top">321dp</dimen>
-    <dimen name="headset_width">300dp</dimen>
-    <dimen name="headset_height">250dp</dimen>
+    <dimen name="margin_between_sub_username">240dp</dimen>
+    <dimen name="guide_begin_top">250dp</dimen>
+    <dimen name="headset_width">180dp</dimen>
+    <dimen name="headset_height">180dp</dimen>
+
+    <dimen name="text_list_size">14sp</dimen>
+    <dimen name="text_list_info">12sp</dimen>
+    <dimen name="text_list_model">20sp</dimen>
+    <dimen name="constraint_app_bar_size">334dp</dimen>
 </resources>

@@ -11,13 +11,15 @@
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/drawable/button_background.xml" value="0.368" />
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/drawable/custom_button.xml" value="0.272" />
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/drawable/custom_login_input.xml" value="0.236" />
+        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/drawable/ic_search.xml" value="0.31" />
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout-v28/activity_main.xml" value="0.3671875" />
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/activity_home_logged.xml" value="0.21919302071973829" />
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/activity_list.xml" value="0.30141085934159895" />
-        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/activity_login.xml" value="0.5024946543121882" />
+        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/activity_main.xml" value="0.42991452991452994" />
-        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/fragment_list.xml" value="0.25" />
-        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/list_item.xml" value="0.22" />
+        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/fragment_details.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/fragment_list.xml" value="0.344106463878327" />
+        <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/layout/list_item.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/diego.ribeiro/Documents/TesteComponentizacao/app/src/main/res/menu/list_fragment_menu.xml" value="0.30141085934159895" />
       </map>
     </option>
@@ -27,5 +29,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
   </component>
 </project>

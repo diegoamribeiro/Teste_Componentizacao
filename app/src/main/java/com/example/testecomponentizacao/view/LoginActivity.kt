@@ -1,4 +1,4 @@
-package com.example.testecomponentizacao
+package com.example.testecomponentizacao.view
 
 import android.content.Intent
 import android.os.Build
@@ -8,7 +8,9 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.testecomponentizacao.databinding.ActivityLoginBinding
 import com.example.testecomponentizacao.utils.hideKeyboard
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding

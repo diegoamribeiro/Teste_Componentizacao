@@ -1,11 +1,14 @@
-package com.example.testecomponentizacao
+package com.example.testecomponentizacao.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.testecomponentizacao.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeLoggedActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.testecomponentizacao.ListFragmentDirections
 import com.example.testecomponentizacao.databinding.ListItemBinding
-import com.example.testecomponentizacao.domain.Product
+import com.example.testecomponentizacao.model.Product
 import com.example.testecomponentizacao.utils.DiffUtilGeneric
 import com.example.testecomponentizacao.utils.loadImage
+import com.example.testecomponentizacao.view.fragments.ListFragmentDirections
 
 class ProductListAdapter : RecyclerView.Adapter<ProductListViewHolder>() {
 
@@ -22,11 +22,11 @@ class ProductListAdapter : RecyclerView.Adapter<ProductListViewHolder>() {
 
     override fun onBindViewHolder(holder: ProductListViewHolder, position: Int) {
         holder.binding.apply {
-            fragmentListTxtTitle.text = productList[position].title
+            fragmentListTxtTitle.text = productList[position].model
             fragmentListTxtPrice.text = productList[position].price
             fragmentListTxtRating.text = productList[position].rating.toString()
             fragmentListTxtReviews.text = productList[position].reviews.toString()
-            loadImage(fragmentListImgHeadsetMini)
+            fragmentListImgHeadsetMini.loadImage(productList[position].imageUrl)
 
             holder.itemView.setOnClickListener {
                 val action = ListFragmentDirections.actionListFragmentToDetailsFragment(productList[position])

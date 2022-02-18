@@ -1,14 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsFragment">
+    android:background="@color/black">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fragment_list_appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="280dp"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_list_gradient"
+            tools:context=".view.fragments.ListFragment">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_list_img_headset"
+                android:layout_width="@dimen/headset_width"
+                android:layout_height="@dimen/headset_height"
+                android:src="@drawable/headset"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_list_img_shadow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_list_img_shadow"
+                android:layout_width="@dimen/headset_width"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shadow_headset"
+                app:layout_constraintEnd_toEndOf="@+id/fragment_list_img_headset"
+                app:layout_constraintStart_toStartOf="@+id/fragment_list_img_headset"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_list_img_headset" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/fragment_details_txt_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="16dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="@string/model"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:layout_marginTop="-45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_list_appbar" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/bg_line"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_model"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_details_guideline_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_details_buy_button"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="@string/buy"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_capture" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_label_connection"
+        style="@style/MyCustomTextViewDetailsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/connection"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_label_compatibility"
+        style="@style/MyCustomTextViewDetailsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/compatibility"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_label_connection" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_label_power"
+        style="@style/MyCustomTextViewDetailsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/power"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_label_compatibility" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_label_autonomy"
+        style="@style/MyCustomTextViewDetailsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/autonomy"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_label_power" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_label_height"
+        style="@style/MyCustomTextViewDetailsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/height"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_label_autonomy" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_label_capture"
+        style="@style/MyCustomTextViewDetailsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capture"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_label_height" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_connection"
+        style="@style/MyCustomTextViewDetailsRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/capture"
+        app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_compatibility"
+        style="@style/MyCustomTextViewDetailsRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capture"
+        app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_connection" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_power"
+        style="@style/MyCustomTextViewDetailsRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capture"
+        app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_compatibility" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_autonomy"
+        style="@style/MyCustomTextViewDetailsRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capture"
+        app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_power" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_height"
+        style="@style/MyCustomTextViewDetailsRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capture"
+        app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_autonomy" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_details_txt_capture"
+        style="@style/MyCustomTextViewDetailsRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capture"
+        app:layout_constraintStart_toStartOf="@+id/fragment_details_guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_details_txt_height" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

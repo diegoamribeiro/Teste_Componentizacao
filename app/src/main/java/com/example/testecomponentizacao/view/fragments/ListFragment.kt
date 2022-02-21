@@ -1,6 +1,7 @@
 package com.example.testecomponentizacao.view.fragments
 
 import android.graphics.drawable.ColorDrawable
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -35,6 +36,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         viewModel = ViewModelProvider(requireActivity())[ListViewModel::class.java]
         binding = FragmentListBinding.inflate(layoutInflater, container, false)
+        binding.fragmentListShimmer.startShimmer()
         val view = binding.root
 
         loadRecyclerView()
@@ -46,7 +48,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun loadRecyclerView(){
-        recyclerView = binding.fragmentListRecyclerview
+        recyclerView =
+            binding.fragmentListRecyclerview
         recyclerView.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -62,12 +65,15 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                     response.data?.let {
                         listAdapter.setData(it)
                     }
+                    binding.fragmentListShimmer.hideShimmer()
+                    binding.fragmentListShimmer.visibility = View.GONE
                 }
                 is NetworkResponse.Error -> {
                     Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResponse.Loading -> {
                     Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                    binding.fragmentListShimmer.showShimmer(true)
                 }
             }
         }
@@ -82,11 +88,11 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
+        TODO()
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
+        TODO()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -5,14 +5,12 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.testecomponentizacao.databinding.ListItemBinding
 import com.example.testecomponentizacao.model.Product
 import com.example.testecomponentizacao.utils.DiffUtilGeneric
 import com.example.testecomponentizacao.utils.loadImage
-import com.example.testecomponentizacao.view.fragments.DetailsFragmentArgs
 import com.example.testecomponentizacao.view.fragments.ListFragmentDirections
+
 
 class ProductListAdapter : RecyclerView.Adapter<ProductListViewHolder>() {
 

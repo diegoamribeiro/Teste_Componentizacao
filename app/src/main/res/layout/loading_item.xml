@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:cardCornerRadius="10dp"
-        android:background="@color/bg_line"
+        android:background="@color/bg_shimmer"
         android:layout_margin="16dp">
     </View>
 
@@ -24,7 +24,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
-        android:background="@color/bg_line"
+        android:background="@color/bg_shimmer"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_txt_label_currency"
         app:layout_constraintStart_toEndOf="@+id/fragment_list_card"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +34,7 @@
         android:layout_width="80dp"
         android:layout_height="13dp"
         android:layout_gravity="center_vertical"
-        android:background="@color/bg_line"
+        android:background="@color/bg_shimmer"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_card"
         app:layout_constraintStart_toStartOf="@+id/fragment_list_txt_title"
         app:layout_constraintTop_toBottomOf="@+id/fragment_list_txt_title"
@@ -45,7 +45,7 @@
         android:layout_width="63dp"
         android:layout_height="13dp"
         android:layout_marginStart="8dp"
-        android:background="@color/bg_line"
+        android:background="@color/bg_shimmer"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_img_star"
         app:layout_constraintStart_toEndOf="@+id/fragment_list_img_star"
         app:layout_constraintTop_toTopOf="@+id/fragment_list_img_star" />
@@ -55,7 +55,7 @@
         android:layout_width="50dp"
         android:layout_height="16dp"
         android:layout_marginStart="64dp"
-        android:background="@color/bg_line"
+        android:background="@color/bg_shimmer"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_card"
         app:layout_constraintStart_toEndOf="@+id/fragment_list_txt_title"
         app:layout_constraintTop_toTopOf="@+id/fragment_list_card" />

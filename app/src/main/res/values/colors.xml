@@ -23,5 +23,6 @@
     <color name="bg_top_headset">#7D22FF</color>
     <color name="bg_center_headset">#441783</color>
     <color name="bg_line">#4B4B4B</color>
+    <color name="bg_shimmer">#676767</color>
 
 </resources>

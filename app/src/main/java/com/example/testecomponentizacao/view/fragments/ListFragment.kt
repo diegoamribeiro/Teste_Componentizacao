@@ -17,6 +17,7 @@ import com.example.testecomponentizacao.R
 import com.example.testecomponentizacao.data.remote.NetworkResponse
 import com.example.testecomponentizacao.databinding.FragmentListBinding
 import com.example.testecomponentizacao.model.Product
+import com.example.testecomponentizacao.utils.observeOnce
 import com.example.testecomponentizacao.view.adapter.ProductListAdapter
 import com.example.testecomponentizacao.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,11 +40,10 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.fragmentListShimmer.startShimmer()
         val view = binding.root
 
+        requestDatabase()
         loadRecyclerView()
-        requestApiData()
         customActionBar()
         setHasOptionsMenu(true)
-
         return view
     }
 
@@ -56,10 +56,21 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
+    private fun requestDatabase(){
+        viewModel.readProducts.observeOnce(viewLifecycleOwner){ database ->
+            if (database.isNotEmpty()){
+                Log.d("***requestDatabase", "Request Database")
+                listAdapter.setData(database)
+            }else{
+                requestApiData()
+            }
+        }
+    }
+
     private fun requestApiData() {
         viewModel.getAllProduct()
         viewModel.productResponse.observe(viewLifecycleOwner) { response ->
-            Log.d("***ListFragment", response.data.toString())
+            Log.d("***requestAPI", "Request API")
             when (response) {
                 is NetworkResponse.Success -> {
                     response.data?.let {

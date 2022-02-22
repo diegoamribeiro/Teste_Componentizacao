@@ -86,9 +86,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
     // Shimmer RecyclerView
-    //implementation "com.github.sharish:ShimmerRecyclerView:v1.3"
     implementation "com.facebook.shimmer:shimmer:0.5.0"
-    //implementation "com.todkars:shimmer-recyclerview:0.4.1"
 
     //RecyclerView Animation
     implementation "jp.wasabeef:recyclerview-animators:4.0.2"

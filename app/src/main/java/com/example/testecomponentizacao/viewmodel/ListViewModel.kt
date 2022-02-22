@@ -1,8 +1,6 @@
 package com.example.testecomponentizacao.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.testecomponentizacao.data.remote.NetworkResponse
 import com.example.testecomponentizacao.model.Product
 import com.example.testecomponentizacao.repository.Repository
@@ -17,6 +15,23 @@ class ListViewModel @Inject constructor(
     private val repository: Repository
 ): ViewModel() {
 
+    /** Database Call **/
+    val readProducts: LiveData<List<Product>> = repository.local.readProducts().asLiveData()
+
+    private fun insertProductsIntoDatabase(product: Product){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertProducts(product)
+        }
+    }
+
+    private fun offlineCacheProducts(products: List<Product>){
+        for (i in products.indices){
+            val item = products[i]
+            insertProductsIntoDatabase(item)
+        }
+    }
+
+    /** Remote Call **/
     val productResponse: MutableLiveData<NetworkResponse<List<Product>>> = MutableLiveData()
 
     fun getAllProduct() = viewModelScope.launch(Dispatchers.IO) {
@@ -27,6 +42,7 @@ class ListViewModel @Inject constructor(
         productResponse.postValue(NetworkResponse.Loading())
         val response = repository.remote.geAllProducts()
         productResponse.postValue(handleSafeProducts(response))
+        offlineCacheProducts(response.body()!!)
     }
 
     private fun handleSafeProducts(response: Response<List<Product>>): NetworkResponse<List<Product>>{

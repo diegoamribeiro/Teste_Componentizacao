@@ -1,6 +1,7 @@
 package com.example.testecomponentizacao.viewmodel
 
 import androidx.lifecycle.*
+import androidx.room.Query
 import com.example.testecomponentizacao.data.remote.NetworkResponse
 import com.example.testecomponentizacao.model.Product
 import com.example.testecomponentizacao.repository.Repository
@@ -53,5 +54,9 @@ class ListViewModel @Inject constructor(
         }else{
             NetworkResponse.Error(response.message())
         }
+    }
+
+    fun searchFromDatabase(searchQuery: String): LiveData<List<Product>>{
+        return repository.local.searchFromDatabase(searchQuery)
     }
 }

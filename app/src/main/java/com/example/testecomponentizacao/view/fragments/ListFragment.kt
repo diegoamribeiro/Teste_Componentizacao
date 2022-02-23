@@ -1,7 +1,6 @@
 package com.example.testecomponentizacao.view.fragments
 
 import android.graphics.drawable.ColorDrawable
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testecomponentizacao.R
 import com.example.testecomponentizacao.data.remote.NetworkResponse
 import com.example.testecomponentizacao.databinding.FragmentListBinding
-import com.example.testecomponentizacao.model.Product
 import com.example.testecomponentizacao.utils.observeOnce
 import com.example.testecomponentizacao.view.adapter.ProductListAdapter
 import com.example.testecomponentizacao.viewmodel.ListViewModel
@@ -99,11 +97,28 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO()
+        if (query != null){
+            searchThroughDatabase(query)
+        }
+        return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        TODO()
+        if (newText != null){
+            searchThroughDatabase(newText)
+        }
+        binding.fragmentListShimmer.visibility = View.GONE
+
+        return true
+    }
+
+    private fun searchThroughDatabase(query: String){
+        val searchQuery = "%$query%"
+        viewModel.searchFromDatabase(searchQuery).observe(this){ list ->
+            list?.let {
+                listAdapter.setData(it)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

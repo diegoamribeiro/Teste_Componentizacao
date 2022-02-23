@@ -8,6 +8,7 @@
     tools:context=".view.fragments.ListFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,10 +49,10 @@
                         android:layout_width="@dimen/headset_width"
                         android:layout_height="wrap_content"
                         android:src="@drawable/shadow_headset"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_details_img_headset"
                         app:layout_constraintEnd_toEndOf="@+id/fragment_details_img_headset"
                         app:layout_constraintStart_toStartOf="@+id/fragment_details_img_headset"
                         app:layout_constraintTop_toBottomOf="@id/fragment_details_img_headset"
-                        app:layout_constraintBottom_toBottomOf="@id/fragment_details_img_headset"
                         tools:layout_editor_absoluteY="200dp" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -100,13 +101,19 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <include layout="@layout/list_item"/>
-                <include layout="@layout/list_item"/>
-                <include layout="@layout/list_item"/>
-                <include layout="@layout/list_item"/>
-                <include layout="@layout/list_item"/>
-                <include layout="@layout/list_item"/>
-                <include layout="@layout/list_item"/>
+                <include layout="@layout/list_item" />
+
+                <include layout="@layout/list_item" />
+
+                <include layout="@layout/list_item" />
+
+                <include layout="@layout/list_item" />
+
+                <include layout="@layout/list_item" />
+
+                <include layout="@layout/list_item" />
+
+                <include layout="@layout/list_item" />
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -119,8 +126,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/list_item"
-            />
+            tools:listitem="@layout/list_item" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

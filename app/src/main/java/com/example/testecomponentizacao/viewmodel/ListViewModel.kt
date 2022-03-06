@@ -1,10 +1,9 @@
 package com.example.testecomponentizacao.viewmodel
 
 import androidx.lifecycle.*
-import androidx.room.Query
 import com.example.testecomponentizacao.data.remote.NetworkResponse
 import com.example.testecomponentizacao.model.Product
-import com.example.testecomponentizacao.repository.Repository
+import com.example.testecomponentizacao.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: ProductRepository
 ): ViewModel() {
 
     /** Database Call **/

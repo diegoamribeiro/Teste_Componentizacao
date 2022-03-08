@@ -9,11 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testecomponentizacao.R
-import com.example.testecomponentizacao.data.remote.NetworkResponse
 import com.example.testecomponentizacao.databinding.FragmentListBinding
 import com.example.testecomponentizacao.utils.observeOnce
 import com.example.testecomponentizacao.view.adapter.ProductListAdapter
@@ -24,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: FragmentListBinding
-    private lateinit var viewModel: ListViewModel
+    private val viewModel by viewModels<ListViewModel>()
     private lateinit var recyclerView: RecyclerView
     private val listAdapter: ProductListAdapter by lazy { ProductListAdapter() }
 
@@ -33,13 +31,14 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         savedInstanceState: Bundle?
     ): View {
 
-        viewModel = ViewModelProvider(requireActivity())[ListViewModel::class.java]
         binding = FragmentListBinding.inflate(layoutInflater, container, false)
         binding.fragmentListShimmer.startShimmer()
         val view = binding.root
 
-        requestDatabase()
+        //requestDatabase()
+
         loadRecyclerView()
+        requestApiData()
         customActionBar()
         setHasOptionsMenu(true)
         return view
@@ -48,14 +47,13 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun loadRecyclerView(){
         recyclerView =
             binding.fragmentListRecyclerview
-        recyclerView.apply {
+        with(recyclerView){
             adapter = listAdapter
-            layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
     private fun requestDatabase(){
-        viewModel.readProducts.observeOnce(viewLifecycleOwner){ database ->
+        viewModel.productResponse.observeOnce(viewLifecycleOwner){ database ->
             if (database.isNotEmpty()){
                 Log.d("***requestDatabase", "Request Database")
                 listAdapter.setData(database)
@@ -66,24 +64,15 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun requestApiData() {
-        viewModel.getAllProduct()
-        viewModel.productResponse.observe(viewLifecycleOwner) { response ->
-            Log.d("***requestAPI", "Request API")
-            when (response) {
-                is NetworkResponse.Success -> {
-                    response.data?.let {
-                        listAdapter.setData(it)
-                    }
-                    binding.fragmentListShimmer.hideShimmer()
-                    binding.fragmentListShimmer.visibility = View.GONE
-                }
-                is NetworkResponse.Error -> {
-                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_SHORT).show()
-                }
-                is NetworkResponse.Loading -> {
-                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                    binding.fragmentListShimmer.showShimmer(true)
-                }
+        viewModel.getAllProducts()
+        Log.d("***requestAPI", "Request API")
+        viewModel.productResponse.observe(viewLifecycleOwner) { listProducts ->
+            if (listProducts.isNotEmpty()){
+                listAdapter.setData(listProducts)
+                binding.fragmentListShimmer.hideShimmer()
+            }else{
+                Toast.makeText(requireContext(), "Sem resposta", Toast.LENGTH_SHORT).show()
+                binding.fragmentListShimmer.visibility = View.GONE
             }
         }
     }
@@ -114,11 +103,11 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchThroughDatabase(query: String){
         val searchQuery = "%$query%"
-        viewModel.searchFromDatabase(searchQuery).observe(this){ list ->
-            list?.let {
-                listAdapter.setData(it)
-            }
-        }
+//        viewModel.searchFromDatabase(searchQuery).observe(this){ list ->
+//            list?.let {
+//                listAdapter.setData(it)
+//            }
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

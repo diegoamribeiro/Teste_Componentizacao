@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testecomponentizacao.databinding.ListItemBinding
-import com.example.testecomponentizacao.model.Product
+import com.example.testecomponentizacao.domain.model.Product
 import com.example.testecomponentizacao.utils.DiffUtilGeneric
 import com.example.testecomponentizacao.utils.loadImage
 import com.example.testecomponentizacao.view.fragments.ListFragmentDirections

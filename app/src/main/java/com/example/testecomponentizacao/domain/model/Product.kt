@@ -1,4 +1,4 @@
-package com.example.testecomponentizacao.model
+package com.example.testecomponentizacao.domain.model
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = PRODUCT_TABLE)
 data class Product(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int?,
     val model: String,
     val price: String,
     val rating: Double,

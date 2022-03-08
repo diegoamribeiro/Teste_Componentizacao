@@ -30,6 +30,6 @@
             app:popExitAnim="@anim/to_right" />
         <argument
             android:name="currentProduct"
-            app:argType="com.example.testecomponentizacao.model.Product" />
+            app:argType="com.example.testecomponentizacao.domain.model.Product" />
     </fragment>
 </navigation>

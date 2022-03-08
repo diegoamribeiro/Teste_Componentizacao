@@ -1,7 +1,7 @@
 package com.repo
 
 import com.example.testecomponentizacao.data.remote.ProductApiService
-import com.example.testecomponentizacao.model.Product
+import com.example.testecomponentizacao.domain.model.Product
 import retrofit2.Response
 
 class FakeApiService : ProductApiService{

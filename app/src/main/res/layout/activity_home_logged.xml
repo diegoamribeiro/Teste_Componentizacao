@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/elevation_overlay"
+    android:id="@+id/container"
     tools:context=".view.HomeLoggedActivity">
 
     <androidx.fragment.app.FragmentContainerView

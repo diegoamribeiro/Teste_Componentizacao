@@ -1,6 +1,8 @@
-package com.example.testecomponentizacao.domain
+package com.example.testecomponentizacao.domain.usecase
 
+import com.example.testecomponentizacao.domain.RemoteException
 import com.example.testecomponentizacao.domain.model.Product
+import com.example.testecomponentizacao.domain.repo.ProductRepository
 import javax.inject.Inject
 
 class GetProductsUseCase @Inject constructor(
@@ -9,7 +11,7 @@ class GetProductsUseCase @Inject constructor(
     suspend operator fun invoke() : Result<List<Product>> {
         return try {
             Result.success(repository.getProducts())
-        }catch (exception: RepositoryException){
+        }catch (exception: RemoteException){
             Result.failure(exception)
         }
     }

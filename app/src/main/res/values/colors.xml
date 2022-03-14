@@ -25,4 +25,7 @@
     <color name="bg_line">#4B4B4B</color>
     <color name="bg_shimmer">#676767</color>
 
+    <color name="vermilion">#FF2626</color>
+    <color name="green">#1BAE56</color>
+
 </resources>

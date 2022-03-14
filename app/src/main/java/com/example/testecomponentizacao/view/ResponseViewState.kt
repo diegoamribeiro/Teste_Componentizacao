@@ -2,8 +2,12 @@ package com.example.testecomponentizacao.view
 
 import com.example.testecomponentizacao.domain.model.Product
 
-sealed class ViewState {
-    object Loading: ViewState()
-    data class Success(val product: Product): ViewState()
-    data class Error(val errorType: Int): ViewState()
+sealed class ResponseViewState<out T>(
+    val data: T? = null,
+    val throwable: Throwable? = null
+)
+ {
+    class Success<T>(data: T): ResponseViewState<T>(data)
+    class Error<T>(throwable: Throwable?, data: T? = null): ResponseViewState<T>(data, throwable)
+    class Loading<T>: ResponseViewState<T>()
 }

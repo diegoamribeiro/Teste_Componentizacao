@@ -1,4 +1,4 @@
-package com.example.testecomponentizacao.di
+package com.example.testecomponentizacao.di.remote
 
 import com.example.testecomponentizacao.data.remote.ProductApiService
 import com.example.testecomponentizacao.utils.Constants.BASE_URL

@@ -11,8 +11,12 @@ class LocalDataSource @Inject constructor(
         return productDAO.readProducts()
     }
 
-    suspend fun insertProducts(product: List<Product>){
-        productDAO.insertProduct(product)
+    suspend fun insertProducts(products: List<Product>){
+        productDAO.insertProduct(products)
+    }
+
+    suspend fun deleteAllProducts(){
+        productDAO.deleteAllProducts()
     }
 
 }

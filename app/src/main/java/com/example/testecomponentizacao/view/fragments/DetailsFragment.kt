@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.testecomponentizacao.R
 import com.example.testecomponentizacao.databinding.FragmentDetailsBinding
-import com.example.testecomponentizacao.utils.loadImage
+import com.example.testecomponentizacao.utils.Utils.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

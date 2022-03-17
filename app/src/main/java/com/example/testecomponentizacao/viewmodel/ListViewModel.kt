@@ -22,23 +22,11 @@ class ListViewModel @Inject constructor(
     val productResponse: LiveData<ResponseViewState<List<Product>>> = _productResponse
 
     fun getAllProducts() = viewModelScope.launch(Dispatchers.IO) {
-        getProductsUseCase().onSuccess {products ->
+        getProductsUseCase().onSuccess { products ->
             _productResponse.postValue(ResponseViewState.Success(products))
         }.onFailure {
             _productResponse.postValue(ResponseViewState.Error(it))
         }
     }
 
-//    private suspend fun getAllSafeProducts(){
-//        productResponse.postValue(ViewState.Loading())
-//        val response = getProductsUseCase.geAllProducts()
-//        productResponse.postValue(handleSafeProducts(response))
-//        offlineCacheProducts(response.body()!!)
-//    }
-//
-
-
-//    fun searchFromDatabase(searchQuery: String): LiveData<List<Product>>{
-//        return repository.local.searchFromDatabase(searchQuery)
-//    }
 }

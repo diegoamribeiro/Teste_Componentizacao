@@ -24,4 +24,9 @@
     <string name="autonomy">Autonomia</string>
     <string name="height">Altura</string>
     <string name="capture">Captação</string>
+    <string name="username">User name</string>
+    <string name="first_last_name">First and last name</string>
+    <string name="already_registered">Já sou cadastrado</string>
+    <string name="login">Login</string>
+    <string name="cadastrar">Cadastrar</string>
 </resources>

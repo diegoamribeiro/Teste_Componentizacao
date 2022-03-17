@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:toos="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dark_300"
-    android:layout_marginBottom="0.5dp"
-    >
+    android:layout_marginBottom="0.5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/fragment_list_card"
@@ -22,9 +22,9 @@
             android:id="@+id/fragment_list_img_headset_mini"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            toos:src="@drawable/headset"
+            tools:src="@drawable/headset"
             android:layout_gravity="center_vertical|center_horizontal"
-            toos:ignore="ContentDescription" />
+            tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textview.MaterialTextView
@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_txt_label_currency"
         app:layout_constraintStart_toEndOf="@+id/fragment_list_card"
         app:layout_constraintTop_toTopOf="parent"
-        toos:text="Fone modelo 02" />
+        tools:text="Fone modelo 02" />
 
     <ImageView
         android:id="@+id/fragment_list_img_star"
@@ -62,7 +62,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_img_star"
         app:layout_constraintStart_toEndOf="@+id/fragment_list_img_star"
         app:layout_constraintTop_toTopOf="@+id/fragment_list_img_star"
-        toos:text="4.6" />
+        tools:text="4.6" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_list_txt_reviews"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_img_star"
         app:layout_constraintStart_toEndOf="@+id/fragment_list_txt_rating"
         app:layout_constraintTop_toTopOf="@+id/fragment_list_img_star"
-        toos:text="86" />
+        tools:text="86" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_list_txt_reviews_label"
@@ -116,6 +116,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/fragment_list_txt_label_currency"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fragment_list_txt_label_currency"
-        toos:text="@string/currency" />
+        tools:text="@string/currency" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

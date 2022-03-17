@@ -3,7 +3,7 @@ package com.example.testecomponentizacao.di.database
 import android.content.Context
 import androidx.room.Room
 import com.example.testecomponentizacao.data.database.ProductDAO
-import com.example.testecomponentizacao.data.database.ProductDatabase
+import com.example.testecomponentizacao.data.database.BeatsDatabase
 import com.example.testecomponentizacao.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -21,11 +21,11 @@ object DatabaseModule {
     @Singleton
     fun providesDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(context, ProductDatabase::class.java, DATABASE_NAME).build()
+    ) = Room.databaseBuilder(context, BeatsDatabase::class.java, DATABASE_NAME).build()
 
     @Provides
     @Singleton
-    fun providesDao(database: ProductDatabase) : ProductDAO {
+    fun providesDao(database: BeatsDatabase) : ProductDAO {
         return database.productDao()
     }
 

@@ -7,6 +7,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
@@ -19,48 +22,61 @@ import dagger.hilt.android.internal.Contexts
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.internal.applyConnectionSpec
 
+object Utils {
 
-fun hideKeyboard(activity: Activity){
-    val inputMethodManager =
-        activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    val currentFocusView = activity.currentFocus
-    currentFocusView.let {
-        inputMethodManager.hideSoftInputFromWindow(
-            currentFocusView?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
-        )
-    }
-}
-
-fun ImageView.loadImage(imageUrl: String, viewGroup: ViewGroup){
-    Glide.with(viewGroup)
-        .load(imageUrl)
-        .transition(DrawableTransitionOptions.withCrossFade())
-        .into(this)
-}
-
-fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>){
-    observe(lifecycleOwner, object : Observer<T> {
-        override fun onChanged(t: T) {
-            removeObserver(this)
-            observer.onChanged(t)
+    fun hideKeyboard(activity: Activity) {
+        val inputMethodManager =
+            activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val currentFocusView = activity.currentFocus
+        currentFocusView.let {
+            inputMethodManager.hideSoftInputFromWindow(
+                currentFocusView?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
-    })
-}
-
-@RequiresApi(Build.VERSION_CODES.M)
-fun hasInternetConnection(context: Context): Boolean {
-    val connectivityManager = Contexts.getApplication(context).getSystemService(
-        Context.CONNECTIVITY_SERVICE
-    ) as ConnectivityManager
-    connectivityManager.addDefaultNetworkActiveListener {
-
     }
-    val activeNetwork = connectivityManager.activeNetwork ?: return false
-    val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-    return when{
-        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-        else -> return false
+
+    fun ImageView.loadImage(imageUrl: String, viewGroup: ViewGroup) {
+        Glide.with(viewGroup)
+            .load(imageUrl)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+
+    fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+        observe(lifecycleOwner, object : Observer<T> {
+            override fun onChanged(t: T) {
+                removeObserver(this)
+                observer.onChanged(t)
+            }
+        })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun hasInternetConnection(context: Context): Boolean {
+        val connectivityManager = Contexts.getApplication(context).getSystemService(
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+        connectivityManager.addDefaultNetworkActiveListener {
+
+        }
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return when {
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> return false
+        }
+    }
+
+    fun hideStatusBar(window: Window){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        }else{
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
     }
 }

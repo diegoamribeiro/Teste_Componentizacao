@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/login_content"
-    tools:context=".view.LoginActivity">
+    tools:context=".RegisterActivity">
 
     <ImageView
-        android:id="@+id/activity_login_img_bg"
+        android:id="@+id/activity_register_img_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -17,7 +17,7 @@
         tools:ignore="ContentDescription" />
 
     <ImageView
-        android:id="@+id/activity_login_img_mask"
+        android:id="@+id/activity_register_img_mask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/background_gradient"
@@ -50,7 +50,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/activity_login_label_my_beats"
+                android:id="@+id/activity_register_label_my_beats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/activity_login_label_merchan"
+                android:id="@+id/activity_register_label_merchan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -73,34 +73,58 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_login_label_my_beats" />
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_label_my_beats" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_login_til_username"
+                android:id="@+id/activity_register_til_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_between_sub_username"
                 android:textColorHint="@color/white_translucent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:theme="@style/MyCustomEditTextStyle"
-                app:helperText="@string/activity_login_tip"
+                app:helperText="@string/first_last_name"
                 app:helperTextTextColor="@color/login_tip_message"
+                android:layout_marginTop="100dp"
                 app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@id/activity_login_label_merchan">
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_label_merchan">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/activity_login_edt_username"
+                    android:id="@+id/activity_register_edt_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/user"
-                    android:maxLines="1"
                     android:inputType="text"
-                    android:textColor="@color/light_grey"/>
+                    android:maxLines="1"
+                    android:textColor="@color/light_grey" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_login_til_password"
+                android:id="@+id/activity_register_til_username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/white_translucent"
+                android:layout_marginTop="30dp"
+                android:theme="@style/MyCustomEditTextStyle"
+                app:helperText="@string/username"
+                app:helperTextTextColor="@color/login_tip_message"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_til_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/activity_register_edt_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/username"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/light_grey" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_til_password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -110,12 +134,12 @@
                 android:textColorHint="@color/white_translucent"
                 app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/activity_login_til_username"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_til_username"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/white_translucent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/activity_login_edt_password"
+                    android:id="@+id/activity_register_edt_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -125,47 +149,45 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/activity_login_button_login"
+                android:id="@+id/activity_register_button_login"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="49dp"
                 android:background="@drawable/custom_button"
                 android:fontFamily="@font/dm_sans_bold"
-                android:text="@string/entrar"
+                android:text="@string/cadastrar"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/activity_login_til_password" />
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_til_password" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/activity_login_button_login">
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_button_login">
 
                 <TextView
-                    android:id="@+id/activity_login_signin_txt_ask"
+                    android:id="@+id/activity_register_signin_txt_ask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/dm_sans_bold"
-                    android:text="@string/ainda_n_o_cadastrado"
+                    android:text="@string/already_registered"
                     android:textColor="@color/light_grey" />
 
                 <TextView
-                    android:id="@+id/activity_login_signin_txt_link"
+                    android:id="@+id/activity_register_signin_txt_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="24dp"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
                     android:fontFamily="@font/dm_sans_bold"
-                    android:text="@string/inscreva_se"
+                    android:text="@string/login"
                     android:textColor="@color/login_label" />
             </LinearLayout>
 

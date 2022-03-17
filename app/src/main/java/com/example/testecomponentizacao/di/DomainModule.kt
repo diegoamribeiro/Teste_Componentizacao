@@ -1,20 +1,33 @@
 package com.example.testecomponentizacao.di
 
+import android.content.Context
+import com.example.testecomponentizacao.data.database.LocalDataSource
+import com.example.testecomponentizacao.data.remote.ProductRemote
+import com.example.testecomponentizacao.data.remote.RemoteDataSource
 import com.example.testecomponentizacao.domain.repo.ProductRepository
 import com.example.testecomponentizacao.domain.repo.ProductRepositoryImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 
 @Module
-@InstallIn(ViewModelComponent::class)
-abstract class DomainModule {
+@InstallIn(SingletonComponent::class)
+object DomainModule {
 
-    @Binds
-    abstract fun bindsProductsRepository(
-        productRepositoryImpl: ProductRepositoryImpl,
-    ): ProductRepository
+    @Provides
+    @Singleton
+    fun providesProductRepository(
+        localDataSource: LocalDataSource,
+        remoteDataSource: RemoteDataSource,
+        @ApplicationContext context: Context
+    ): ProductRepository{
+        return ProductRepositoryImpl(localDataSource, remoteDataSource, context)
+    }
 
 }

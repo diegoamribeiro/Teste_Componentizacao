@@ -1,5 +1,11 @@
 package com.example.testecomponentizacao.data.remote
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
+import androidx.annotation.RequiresApi
+import dagger.hilt.android.internal.Contexts
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(

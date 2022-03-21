@@ -26,7 +26,9 @@
     <string name="capture">Captação</string>
     <string name="username">User name</string>
     <string name="first_last_name">First and last name</string>
-    <string name="already_registered">Já sou cadastrado</string>
+    <string name="already_registered">Já sou cadastrado.</string>
     <string name="login">Login</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="bem_simples_e_r_pido">É bem simples e rápido</string>
 </resources>

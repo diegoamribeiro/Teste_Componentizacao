@@ -22,6 +22,7 @@ class ListViewModel @Inject constructor(
     val productResponse: LiveData<ResponseViewState<List<Product>>> = _productResponse
 
     fun getAllProducts() = viewModelScope.launch(Dispatchers.IO) {
+
         getProductsUseCase().onSuccess { products ->
             _productResponse.postValue(ResponseViewState.Success(products))
         }.onFailure {

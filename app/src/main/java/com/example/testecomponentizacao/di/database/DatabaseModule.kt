@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.testecomponentizacao.data.database.ProductDAO
 import com.example.testecomponentizacao.data.database.BeatsDatabase
+import com.example.testecomponentizacao.data.database.UserDao
 import com.example.testecomponentizacao.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -27,6 +28,12 @@ object DatabaseModule {
     @Singleton
     fun providesDao(database: BeatsDatabase) : ProductDAO {
         return database.productDao()
+    }
+
+    @Provides
+    @Singleton
+    fun providesUserDao(database: BeatsDatabase) : UserDao {
+        return database.userDao()
     }
 
 }

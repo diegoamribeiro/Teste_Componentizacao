@@ -1,27 +1,34 @@
 package com.example.testecomponentizacao.view.fragments
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testecomponentizacao.R
+import com.example.testecomponentizacao.data.preferences.UserPreferencesRepository
 import com.example.testecomponentizacao.data.remote.NetworkStatus
 import com.example.testecomponentizacao.data.remote.NetworkStatusHelper
 import com.example.testecomponentizacao.databinding.FragmentListBinding
 import com.example.testecomponentizacao.utils.Utils.hasInternetConnection
+import com.example.testecomponentizacao.view.LoginActivity
 import com.example.testecomponentizacao.view.ResponseViewState
 import com.example.testecomponentizacao.view.adapter.ProductListAdapter
+import com.example.testecomponentizacao.viewmodel.AuthViewModel
 import com.example.testecomponentizacao.viewmodel.ListViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
@@ -31,6 +38,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: FragmentListBinding
     private val viewModel by viewModels<ListViewModel>()
+    private val authViewModel by viewModels<AuthViewModel>()
     private lateinit var recyclerView: RecyclerView
     private val listAdapter: ProductListAdapter by lazy { ProductListAdapter() }
 
@@ -47,13 +55,27 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         requestApiData()
         customActionBar()
         setHasOptionsMenu(true)
+        logout()
 
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        checkInternetConnection()
+//    override fun onResume() {
+//        super.onResume()
+//        checkInternetConnection()
+//    }
+
+    private fun logout(){
+        val preferences = UserPreferencesRepository(requireContext())
+
+        binding.fragmentListBtnLogout.setOnClickListener {
+            val intentLogin = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intentLogin)
+            lifecycleScope.launch {
+                preferences.deleteAllData()
+            }
+            activity?.finish()
+        }
     }
 
     private fun loadRecyclerView() {

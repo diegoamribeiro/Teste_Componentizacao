@@ -10,9 +10,12 @@ import com.example.testecomponentizacao.domain.model.User
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun registerUser(user: User) : Long
+    suspend fun registerUser(user: User)
 
     @Query("SELECT * FROM user_table WHERE username LIKE :username AND password LIKE :password")
     fun loginUser(username: String, password: String) : User
+
+    @Query("SELECT * FROM user_table WHERE username LIKE :username")
+    suspend fun checkUsers(username: String) : User?
 
 }

@@ -7,7 +7,7 @@ import androidx.annotation.RequiresApi
 import com.example.testecomponentizacao.data.database.LocalDataSource
 import com.example.testecomponentizacao.data.remote.RemoteDataSource
 import com.example.testecomponentizacao.data.remote.toProduct
-import com.example.testecomponentizacao.domain.RemoteException
+import com.example.testecomponentizacao.domain.exception.RemoteException
 import com.example.testecomponentizacao.domain.model.Product
 import com.example.testecomponentizacao.utils.Utils.hasInternetConnection
 import retrofit2.HttpException

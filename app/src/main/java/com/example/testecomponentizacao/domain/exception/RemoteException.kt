@@ -1,4 +1,4 @@
-package com.example.testecomponentizacao.domain
+package com.example.testecomponentizacao.domain.exception
 
 import com.example.testecomponentizacao.domain.model.Product
 import retrofit2.HttpException

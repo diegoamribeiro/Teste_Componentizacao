@@ -1,6 +1,6 @@
 package com.example.testecomponentizacao.domain.usecase
 
-import com.example.testecomponentizacao.domain.RemoteException
+import com.example.testecomponentizacao.domain.exception.RemoteException
 import com.example.testecomponentizacao.domain.model.Product
 import com.example.testecomponentizacao.domain.repo.ProductRepository
 import javax.inject.Inject

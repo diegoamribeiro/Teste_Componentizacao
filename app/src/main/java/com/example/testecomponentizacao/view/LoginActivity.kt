@@ -5,13 +5,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
+import com.example.testecomponentizacao.R
 import com.example.testecomponentizacao.RegisterActivity
-import com.example.testecomponentizacao.data.preferences.UserPreferencesRepository
 import com.example.testecomponentizacao.databinding.ActivityLoginBinding
 import com.example.testecomponentizacao.resource.Status
 import com.example.testecomponentizacao.utils.Utils.hideKeyboard
@@ -20,8 +21,8 @@ import com.example.testecomponentizacao.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.concurrent.Executor
 
 @RequiresApi(Build.VERSION_CODES.M)
 @AndroidEntryPoint
@@ -47,7 +48,14 @@ class LoginActivity : AppCompatActivity() {
             loginUser()
         }
 
+        CoroutineScope(Dispatchers.IO).launch{
+            Log.d("***Logged", viewModel.logged().toString())
+        }
+
+        verifySavedPreferences()
+
         //checkInternetConnection()
+
         setContentView(view)
     }
 
@@ -84,6 +92,43 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateFields(username: String, password: String): Boolean {
         return username.isNotBlank() && password.isNotBlank()
+    }
+
+    private fun <T> navigateToActivity(activity: Class<T>) {
+        val intent = Intent(this, activity)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun verifySavedPreferences() {
+        viewModel.loggedUser.observe(this){
+            showBiometricAuthentication()
+        }
+    }
+
+    private fun showBiometricAuthentication() {
+        // Executor
+        val executor: Executor = ContextCompat.getMainExecutor(this)
+
+        // Biometric Prompt
+        val biometricPrompt = BiometricPrompt(
+            this@LoginActivity,
+            executor, object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    binding.activityLoginProgress.visibility = View.VISIBLE
+                    navigateToActivity(HomeLoggedActivity::class.java)
+                }
+            })
+
+        // Biometric Prompt INFO
+        val info: BiometricPrompt.PromptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle(getString(R.string.biometric_title))
+            .setDescription(getString(R.string.biometric_description))
+            .setNegativeButtonText("Cancel")
+            .build()
+
+        biometricPrompt.authenticate(info)
     }
 }
 

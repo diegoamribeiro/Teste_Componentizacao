@@ -22,48 +22,25 @@ import kotlinx.coroutines.launch
 class IntroductionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
-    private lateinit var viewModel: AuthViewModel
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
         Utils.hideStatusBar(window)
-        verifySavedPreferences()
-
+        navigateToActivity()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-
-    private fun <T> navigateToActivity(activity: Class<T>) {
+    private fun navigateToActivity() {
         Handler().postDelayed({
-            val intent = Intent(this, activity)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 4000)
     }
-
-    private fun verifySavedPreferences() {
-        lifecycleScope.launch {
-            viewModel.username.observe(this@IntroductionActivity){user ->
-                viewModel.password.observe(this@IntroductionActivity){ pass ->
-                    Log.d("***Activity", "User: $user - Pass: $pass")
-                    if (user.isNotEmpty() && pass.isNotEmpty()){
-                        navigateToActivity(HomeLoggedActivity::class.java)
-                    }else{
-                        navigateToActivity(LoginActivity::class.java)
-                    }
-                }
-            }
-            //Log.d("***Activity", "$user - $pass")
-            //val pass = viewModel.username.value
-        }
-    }
-
 }

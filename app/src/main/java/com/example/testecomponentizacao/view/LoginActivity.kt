@@ -48,10 +48,6 @@ class LoginActivity : AppCompatActivity() {
             loginUser()
         }
 
-        CoroutineScope(Dispatchers.IO).launch{
-            Log.d("***Logged", viewModel.logged().toString())
-        }
-
         verifySavedPreferences()
 
         //checkInternetConnection()

@@ -1,6 +1,5 @@
 package com.example.testecomponentizacao.data.database
 
-import androidx.lifecycle.LiveData
 import com.example.testecomponentizacao.domain.model.Product
 import com.example.testecomponentizacao.domain.model.User
 import javax.inject.Inject
@@ -22,12 +21,16 @@ class LocalDataSource @Inject constructor(
         productDAO.deleteAllProducts()
     }
 
-    suspend fun registerUser(user: User) : Long {
+    suspend fun registerUser(user: User) {
         return userDao.registerUser(user)
     }
 
     fun loginUser(username: String, password: String) : User{
         return userDao.loginUser(username, password)
+    }
+
+    suspend fun checkUser(username: String) : User?{
+        return userDao.checkUsers(username)
     }
 
 }

@@ -1,14 +1,8 @@
 package com.example.testecomponentizacao.resource
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
-    companion object {
-        fun <T> success(data: T?): Resource<T> =
-            Resource(status = Status.SUCCESS, data = data, message = null)
+sealed class Resource<out T>(val status: Status, open val data: T?, open val message: String?) {
 
-        fun <T> error(data: T?, message: String): Resource<T> =
-            Resource(status = Status.ERROR, data = data, message = message)
-
-        fun <T> loading(data: T?): Resource<T> =
-            Resource(status = Status.LOADING, data = data, message = null)
-    }
+    class Success<T>(data: T?): Resource<T>(Status.SUCCESS, data, null)
+    data class Error<T>(override val message: String?): Resource<T>(Status.ERROR,data = null, message = message)
+    class Loading<T>(data: T?): Resource<T>(Status.LOADING, data, null)
 }

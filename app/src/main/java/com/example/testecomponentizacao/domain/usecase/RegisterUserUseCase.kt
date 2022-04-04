@@ -8,8 +8,12 @@ class RegisterUserUseCase @Inject constructor(
     private val userRepository: AuthRepository
 ) {
 
-    suspend fun registerUser(user: User): Long {
-        return userRepository.registerUser(user)
+    suspend fun registerUser(user: User) {
+        userRepository.registerUser(user)
+    }
+
+    suspend fun checkUser(username: String): User?{
+        return userRepository.checkUser(username)
     }
 
 }

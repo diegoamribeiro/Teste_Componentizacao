@@ -17,13 +17,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".view.LoginActivity"
+            android:exported="false"
+            />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".view.HomeLoggedActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.IntroductionActivity"
+            android:theme="@style/Theme.TesteComponentizacao.Fullscreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -13,7 +13,7 @@
     <string name="label_reviews">Reviews</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add">Adicionar</string>
+    <string name="logout">Logout</string>
     <string name="question">\?</string>
     <string name="search">Search</string>
     <string name="model">Modelo 01</string>
@@ -31,4 +31,9 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="cadastre_se">Cadastre-se</string>
     <string name="bem_simples_e_r_pido">É bem simples e rápido</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="biometric_description">Insira sua digital ou o seu rosto para logar</string>
+    <string name="biometric_title">Login Biométrico</string>
 </resources>

@@ -58,6 +58,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // Biometrics
+    implementation "androidx.biometric:biometric:1.0.1"
+
     // Architectural components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 
@@ -102,6 +105,15 @@ dependencies {
 
     //RecyclerView Animation
     implementation "jp.wasabeef:recyclerview-animators:4.0.2"
+
+    //Data Store
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    //Lottie
+    implementation "com.airbnb.android:lottie:3.4.0"
+
+    //Splash Screen
+    implementation "androidx.core:core-splashscreen:1.0.0-beta02"
 
     // Unit Tests
     testImplementation 'junit:junit:4.13.2'

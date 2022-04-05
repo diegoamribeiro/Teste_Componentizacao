@@ -5,30 +5,24 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testecomponentizacao.R
 import com.example.testecomponentizacao.data.preferences.UserPreferencesRepository
-import com.example.testecomponentizacao.data.remote.NetworkStatus
-import com.example.testecomponentizacao.data.remote.NetworkStatusHelper
+import com.example.testecomponentizacao.data.remote.LiveDataInternetConnections
 import com.example.testecomponentizacao.databinding.FragmentListBinding
-import com.example.testecomponentizacao.utils.Utils.hasInternetConnection
 import com.example.testecomponentizacao.view.LoginActivity
 import com.example.testecomponentizacao.view.ResponseViewState
 import com.example.testecomponentizacao.view.adapter.ProductListAdapter
-import com.example.testecomponentizacao.viewmodel.AuthViewModel
 import com.example.testecomponentizacao.viewmodel.ListViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
@@ -38,9 +32,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: FragmentListBinding
     private val viewModel by viewModels<ListViewModel>()
-    private val authViewModel by viewModels<AuthViewModel>()
     private lateinit var recyclerView: RecyclerView
     private val listAdapter: ProductListAdapter by lazy { ProductListAdapter() }
+    private lateinit var cld: LiveDataInternetConnections
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
@@ -50,6 +44,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         binding = FragmentListBinding.inflate(layoutInflater, container, false)
         binding.fragmentListShimmer.startShimmer()
+        cld = LiveDataInternetConnections(requireActivity().application)
 
         loadRecyclerView()
         requestApiData()
@@ -60,12 +55,12 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         return binding.root
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        checkInternetConnection()
-//    }
+    override fun onResume() {
+        super.onResume()
+        checkInternetConnection()
+    }
 
-    private fun logout(){
+    private fun logout() {
         val preferences = UserPreferencesRepository(requireContext())
 
         binding.fragmentListBtnLogout.setOnClickListener {
@@ -154,21 +149,20 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun checkInternetConnection() {
-        NetworkStatusHelper(requireActivity().applicationContext).observe(viewLifecycleOwner) {
-            when (it) {
-                NetworkStatus.Unavailable ->
-                    showSnackBar(
-                        "No Connection! Data could be up dated",
-                        ContextCompat.getColor(requireContext(), R.color.vermilion),
-                        Snackbar.LENGTH_INDEFINITE
-                    )
-                NetworkStatus.Available ->
-                    showSnackBar(
-                        "Connected", ContextCompat.getColor(
-                            requireContext(),
-                            R.color.green
-                        ), Snackbar.LENGTH_SHORT
-                    )
+        cld.observe(this) { isConnected ->
+            if (isConnected) {
+                showSnackBar(
+                    "Connected", ContextCompat.getColor(
+                        requireContext(),
+                        R.color.green
+                    ), Snackbar.LENGTH_SHORT
+                )
+            } else {
+                showSnackBar(
+                    "No Connection! Data could be up dated",
+                    ContextCompat.getColor(requireContext(), R.color.vermilion),
+                    Snackbar.LENGTH_INDEFINITE
+                )
             }
         }
     }

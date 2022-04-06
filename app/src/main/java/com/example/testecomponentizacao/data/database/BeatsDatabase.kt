@@ -15,5 +15,4 @@ abstract class BeatsDatabase
 
     abstract fun productDao() : ProductDAO
     abstract fun userDao() : UserDao
-
 }

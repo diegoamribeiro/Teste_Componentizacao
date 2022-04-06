@@ -4,21 +4,20 @@ on: pull_request
 
 jobs:
 
-  unit_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run tests
-        run: ./gradlew test
-
   build:
-    needs: [ unit_tests ]
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Set Up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
+       - uses: actions/checkout@v1
+
+       - name: Set Up JDK
+         uses: actions/setup-java@v1
+         with:
+           java-version: 11
+
+       - name: Run tests
+         run: ./gradlew test
 
       - name: Build Project
         run: ./gradlew assemble

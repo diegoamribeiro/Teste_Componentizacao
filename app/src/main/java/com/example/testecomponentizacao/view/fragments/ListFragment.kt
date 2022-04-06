@@ -126,11 +126,11 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchThroughDatabase(query: String) {
         val searchQuery = "%$query%"
-    //        viewModel.searchFromDatabase(searchQuery).observe(this){ list ->
-    //            list?.let {
-    //                listAdapter.setData(it)
-    //            }
-    //        }
+//        viewModel.searchFromDatabase(searchQuery).observe(this){ list ->
+//            list?.let {
+//                listAdapter.setData(it)
+//            }
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

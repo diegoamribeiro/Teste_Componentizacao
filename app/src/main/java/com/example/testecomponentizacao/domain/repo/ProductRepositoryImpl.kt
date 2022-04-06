@@ -1,6 +1,5 @@
 package com.example.testecomponentizacao.domain.repo
 
-
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi

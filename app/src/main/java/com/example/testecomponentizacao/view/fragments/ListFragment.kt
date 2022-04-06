@@ -119,7 +119,6 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         if (newText != null) {
             searchThroughDatabase(newText)
         }
-
         binding.fragmentListShimmer.visibility = View.GONE
 
         return true

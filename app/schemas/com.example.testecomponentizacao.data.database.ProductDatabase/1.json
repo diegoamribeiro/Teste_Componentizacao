@@ -1,0 +1,100 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "6618674aca222ecf03ed100f201366ff",
+    "entities": [
+      {
+        "tableName": "product_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `model` TEXT NOT NULL, `price` TEXT NOT NULL, `rating` REAL NOT NULL, `reviews` INTEGER NOT NULL, `imageUrl` TEXT NOT NULL, `autonomy` TEXT NOT NULL, `capture` TEXT NOT NULL, `compatibility` TEXT NOT NULL, `connection` TEXT NOT NULL, `height` TEXT NOT NULL, `power` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "model",
+            "columnName": "model",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "rating",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reviews",
+            "columnName": "reviews",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "autonomy",
+            "columnName": "autonomy",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "capture",
+            "columnName": "capture",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "compatibility",
+            "columnName": "compatibility",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "connection",
+            "columnName": "connection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "power",
+            "columnName": "power",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6618674aca222ecf03ed100f201366ff')"
+    ]
+  }
+}

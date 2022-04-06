@@ -23,4 +23,4 @@ jobs:
           java-version: 11
 
       - name: Build Project
-        run: ./gradlew buildDevDebug
+        run: ./gradlew build

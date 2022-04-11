@@ -133,6 +133,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 //        }
     }
 
+
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_fragment_menu, menu)
         val search = menu.findItem(R.id.menu_search)
@@ -166,5 +168,4 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
     }
-
 }

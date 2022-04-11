@@ -1,13 +1,12 @@
 package com.example.testecomponentizacao.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.testecomponentizacao.domain.usecase.GetProductsUseCase
 import com.example.testecomponentizacao.domain.model.Product
 import com.example.testecomponentizacao.view.ResponseViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject

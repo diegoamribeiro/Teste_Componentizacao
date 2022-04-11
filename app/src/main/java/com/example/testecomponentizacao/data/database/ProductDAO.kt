@@ -14,7 +14,7 @@ interface ProductDAO {
     suspend fun insertProduct(product: List<Product>)
 
     @Query("SELECT * FROM PRODUCT_TABLE ORDER BY id ASC")
-    fun readProducts() : List<Product>
+    suspend fun readProducts() : List<Product>
 
     @Query("DELETE FROM PRODUCT_TABLE")
     suspend fun deleteAllProducts()

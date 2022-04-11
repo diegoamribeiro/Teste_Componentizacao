@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
+import dagger.Provides
 import dagger.hilt.android.internal.Contexts
 import javax.inject.Inject
 

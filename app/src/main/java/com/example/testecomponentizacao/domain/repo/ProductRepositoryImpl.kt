@@ -1,6 +1,9 @@
 package com.example.testecomponentizacao.domain.repo
 
+import android.app.Application
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.testecomponentizacao.data.database.LocalDataSource
@@ -8,7 +11,9 @@ import com.example.testecomponentizacao.data.remote.RemoteDataSource
 import com.example.testecomponentizacao.data.remote.toProduct
 import com.example.testecomponentizacao.domain.exception.RemoteException
 import com.example.testecomponentizacao.domain.model.Product
-import com.example.testecomponentizacao.utils.Utils.hasInternetConnection
+import com.example.testecomponentizacao.utils.Utils
+import dagger.hilt.android.internal.Contexts
+import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.HttpException
 import java.net.HttpURLConnection
 import javax.inject.Inject
@@ -17,16 +22,16 @@ import javax.inject.Inject
 class ProductRepositoryImpl @Inject constructor(
     private val local: LocalDataSource,
     private val remote: RemoteDataSource,
-    private var context: Context
+    @ApplicationContext private val context: Context
 ) : ProductRepository {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override suspend fun getProducts(): List<Product> {
         try {
-            return if (!hasInternetConnection(context)){
-                local.readProducts()
-            }else{
+            return if (Utils.hasInternetConnection(context)){
                 getRemoteProducts()
+            }else{
+                local.readProducts()
             }
         } catch (exception: HttpException) {
             when (exception.response()?.code()) {
@@ -61,5 +66,25 @@ class ProductRepositoryImpl @Inject constructor(
     override suspend fun deleteAllProducts() {
         local.deleteAllProducts()
     }
+
+
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    fun hasInternetConnection(): Boolean {
+//
+//        val connectivityManager = context.getSystemService(
+//            Context.CONNECTIVITY_SERVICE
+//        ) as ConnectivityManager
+//        connectivityManager.addDefaultNetworkActiveListener {
+//
+//        }
+//        val activeNetwork = connectivityManager.activeNetwork ?: return false
+//        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+//        return when {
+//            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+//            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+//            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+//            else -> return false
+//        }
+//    }
 
 }

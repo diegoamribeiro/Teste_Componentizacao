@@ -2,6 +2,7 @@ package com.example.testecomponentizacao.data.database
 
 import com.example.testecomponentizacao.domain.model.Product
 import com.example.testecomponentizacao.domain.model.User
+import dagger.Provides
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
@@ -9,7 +10,7 @@ class LocalDataSource @Inject constructor(
     private val userDao: UserDao
 ) {
 
-    fun readProducts(): List<Product>{
+    suspend fun readProducts(): List<Product>{
         return productDAO.readProducts()
     }
 

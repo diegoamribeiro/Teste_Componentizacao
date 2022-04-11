@@ -1,5 +1,7 @@
 package com.example.testecomponentizacao.di.remote
 
+import android.app.Application
+import android.content.Context
 import com.example.testecomponentizacao.data.remote.ProductApiService
 import com.example.testecomponentizacao.utils.Constants.BASE_URL
 import dagger.Module
@@ -12,7 +14,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
+
 
 private const val READ_TIMEOUT = 30L
 private const val CONNECT_TIMEOUT = 30L
@@ -65,6 +69,13 @@ object NetworkModule {
             .addConverterFactory(gsonConverterFactory)
             .client(okHttpClient)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("AppContext")
+    fun provideContext(application: Application): Context? {
+        return application.applicationContext
     }
 
     @Singleton

@@ -9,7 +9,16 @@ on:
 
 jobs:
 
+  unit_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Unit tests
+        run: ./gradlew test
+
   build:
+    needs: [ unit_tests ]
     runs-on: ubuntu-latest
 
     steps:

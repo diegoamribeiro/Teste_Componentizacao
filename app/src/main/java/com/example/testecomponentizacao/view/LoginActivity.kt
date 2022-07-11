@@ -2,12 +2,11 @@ package com.example.testecomponentizacao.view
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +18,6 @@ import com.example.testecomponentizacao.utils.Utils.hideKeyboard
 import com.example.testecomponentizacao.utils.Utils.hideStatusBar
 import com.example.testecomponentizacao.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.concurrent.Executor
 
 @RequiresApi(Build.VERSION_CODES.M)

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -33,8 +34,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentListBinding
     private val viewModel by viewModels<ListViewModel>()
     private lateinit var recyclerView: RecyclerView
-    private val listAdapter: ProductListAdapter by lazy { ProductListAdapter() }
-    private lateinit var cld: LiveDataInternetConnections
+    private val productListAdapter: ProductListAdapter by lazy { ProductListAdapter() }
+    private lateinit var connection: LiveDataInternetConnections
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
@@ -44,7 +45,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         binding = FragmentListBinding.inflate(layoutInflater, container, false)
         binding.fragmentListShimmer.startShimmer()
-        cld = LiveDataInternetConnections(requireActivity().application)
+        connection = LiveDataInternetConnections(requireActivity().application)
 
         loadRecyclerView()
         requestApiData()
@@ -77,7 +78,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         recyclerView =
             binding.fragmentListRecyclerview
         with(recyclerView) {
-            adapter = listAdapter
+            adapter = productListAdapter
         }
     }
 
@@ -86,7 +87,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         viewModel.productResponse.observe(viewLifecycleOwner) { viewState ->
             when (viewState) {
                 is ResponseViewState.Success<*> -> {
-                    listAdapter.setData(viewState.data!!)
+                    productListAdapter.setData(viewState.data!!)
+                    Log.d("***DATA",viewState.data.toString())
                 }
                 is ResponseViewState.Error -> {
 
@@ -133,8 +135,6 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 //        }
     }
 
-
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_fragment_menu, menu)
         val search = menu.findItem(R.id.menu_search)
@@ -151,7 +151,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun checkInternetConnection() {
-        cld.observe(this) { isConnected ->
+        connection.observe(this) { isConnected ->
             if (isConnected) {
                 showSnackBar(
                     "Connected", ContextCompat.getColor(
@@ -161,7 +161,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                 )
             } else {
                 showSnackBar(
-                    "No Connection! Data could be up dated",
+                    "No Connection! Data could be out dated",
                     ContextCompat.getColor(requireContext(), R.color.vermilion),
                     Snackbar.LENGTH_INDEFINITE
                 )
